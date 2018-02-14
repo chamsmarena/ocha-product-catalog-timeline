@@ -1,0 +1,97 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?qkq9nq');
+  src:  url('fonts/icomoon.eot?qkq9nq#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?qkq9nq') format('truetype'),
+    url('fonts/icomoon.woff?qkq9nq') format('woff'),
+    url('fonts/icomoon.svg?qkq9nq#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-other:before {
+  content: "\e916";
+}
+.icon-leadership:before {
+  content: "\e915";
+}
+.icon-download:before {
+  content: "\e914";
+  color: #d80027;
+}
+.icon-logoOcha:before {
+  content: "\e900";
+  color: #026bb5;
+}
+.icon-affectedPopulation:before {
+  content: "\e901";
+}
+.icon-attacks:before {
+  content: "\e902";
+}
+.icon-attacksWithDeath:before {
+  content: "\e913";
+}
+.icon-coordination:before {
+  content: "\e903";
+}
+.icon-displacements:before {
+  content: "\e904";
+}
+.icon-education:before {
+  content: "\e905";
+}
+.icon-election:before {
+  content: "\e906";
+}
+.icon-epidemics:before {
+  content: "\e907";
+}
+.icon-fire:before {
+  content: "\e908";
+}
+.icon-floods:before {
+  content: "\e909";
+}
+.icon-foodSec:before {
+  content: "\e90a";
+}
+.icon-funding:before {
+  content: "\e90b";
+}
+.icon-humanitarianAccess:before {
+  content: "\e90c";
+}
+.icon-Kidnapping:before {
+  content: "\e90d";
+}
+.icon-mudslide:before {
+  content: "\e90e";
+}
+.icon-needsAssessment:before {
+  content: "\e90f";
+}
+.icon-refugeeCamp:before {
+  content: "\e910";
+}
+.icon-returnees:before {
+  content: "\e911";
+}
+.icon-volcano:before {
+  content: "\e912";
+}
