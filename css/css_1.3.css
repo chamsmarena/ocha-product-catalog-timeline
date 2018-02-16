@@ -7,6 +7,24 @@ body {
      background-color: #545454;
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+.col1{
+	float: left;
+    width: 50%;
+    height: 100%;
+    overflow-y: scroll;
+	height:700px;
+}
+.col2{
+	float: left;
+    width: 50%;
+    height: 100%;
+    overflow-y: scroll;
+	height:700px;
+}
 .logo{
 	font-size: 56px;
 }
@@ -14,6 +32,7 @@ body {
 	position: fixed;
     bottom: 0;
 	margin-left:5px;
+	z-index:-10;
 }
 .titreDocument{
     color: #ffffff;
@@ -38,6 +57,27 @@ body {
     color: white;
     text-align: center;
     padding: 5px;
+}
+.Annual{    
+	background-color: #fa575d;
+}
+.Bi-annual{    
+	background-color: #ff6600;
+}
+.Quarterly{    
+	background-color: #ff6666;
+}
+.Bi-monthly{    
+	background-color: #ff6699;
+}
+.Monthly{    
+	background-color: #ff66cc;
+}
+.Weekly{    
+	background-color: #ff66ff;
+}
+.Daily{    
+	background-color: #cc33ff;
 }
 .productResponsibleUnit{    
     border-radius: 100%;
@@ -118,6 +158,12 @@ body {
 }
 .IM {
 	background-color:#0082f1;
+}
+.AF {
+	background-color:#ff99ff;
+}
+.DE {
+	background-color:#000000;
 }
 .productTitle {
 	display: inline-block;

@@ -91,7 +91,7 @@
 			
 			var output = "";
 			
-			
+			linkFull = "";
 			if(productInfo[14]!=undefined){
 				link = productInfo[14].replace("porductdistributionlink: ", "").trim();
 				link = link.trim();
@@ -105,6 +105,21 @@
 				link = "";
 			}
 
+			
+			if(productInfo[16]!=undefined){
+			
+				link2 = productInfo[16].replace("product2nddistributionlink: ", "").trim();
+				link2 = link2.trim();
+				if(link2!="NA"){
+					link2 = "<a href='"+link2+"' target='_blank'><span class='glyphicon glyphicon-link lienDocument'></span></a>";
+				
+				}else{
+					link2 = "";
+				}
+			}else{
+				link2 = "";
+			}
+			linkFull = link+" "+link2;
 			
 		
 			if(productInfo[15]!=undefined){
@@ -164,6 +179,32 @@
 				piResponsabilities = "";
 			}
 			
+			var AfResponsabilities = productInfo[9].split(":")[1];
+			if(AfResponsabilities!=undefined){
+				AfResponsabilities = AfResponsabilities.trim();
+				
+				if(AfResponsabilities=="NA"){
+					AfResponsabilities = "";
+				}else{
+					AfResponsabilities = "<div class='productResponsibleLine'><div class='productResponsibleUnit AF'>AF</div><div class='productResponsibleTask'>"+productInfo[9].split(":")[1].trim()+"</div></div>";
+				}
+			}else{
+				AfResponsabilities = "";
+			}
+			
+			var DeResponsabilities = productInfo[10].split(":")[1];
+			if(DeResponsabilities!=undefined){
+				DeResponsabilities = DeResponsabilities.trim();
+				
+				if(DeResponsabilities=="NO"){
+					DeResponsabilities = "";
+				}else{
+					DeResponsabilities = "<div class='productResponsibleLine'><div class='productResponsibleUnit DE'>DE</div><div class='productResponsibleTask'>Needs designer</div></div>";
+				}
+			}else{
+				DeResponsabilities = "";
+			}
+			
 			
 			
 			
@@ -179,7 +220,7 @@
 			if(occurence=="Ad hoc"){
 				
 				
-				$("#anytime").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence2'><span class='ion-flash'></span></div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+link+"</div></div></div></div>");
+				$("#anytime").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence2'><span class='ion-flash'></span></div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+AfResponsabilities+DeResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+linkFull+"</div></div></div></div>");
 				
 				id = "product"+pID;
 				productEvent = document.getElementById(id);
@@ -196,7 +237,7 @@
 					case "Bi-monthly":
 						for (j = 0; j < months.length; j++) {
 							
-							$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+link+"</div></div></div></div>");
+							$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence "+occurence+"'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+AfResponsabilities+DeResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+linkFull+"</div></div></div></div>");
 							
 							id = "product"+pID;
 							productEvent = document.getElementById(id);
@@ -208,7 +249,7 @@
 						break;
 					case "Daily":
 						for (j = 0; j < months.length; j++) {
-							$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+link+"</div></div></div></div>");
+							$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence "+occurence+"'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+AfResponsabilities+DeResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+linkFull+"</div></div></div></div>");
 							
 							id = "product"+pID;
 							productEvent = document.getElementById(id);
@@ -228,7 +269,7 @@
 								
 								if(months.indexOf(monthArray[k].trim())!=-1){
 									////console.log(product+" trouve");
-									$("#"+monthArray[k].trim()+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+link+"</div></div></div></div>");
+									$("#"+monthArray[k].trim()+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence "+occurence+"'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+AfResponsabilities+DeResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+linkFull+"</div></div></div></div>");
 								
 									id = "product"+pID;
 									productEvent = document.getElementById(id);
@@ -247,7 +288,7 @@
 
 						if(!monthsExists){
 							for (j = 0; j < months.length; j+=6) {
-								$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+link+"</div></div></div></div>");
+								$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence "+occurence+"'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+AfResponsabilities+DeResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+linkFull+"</div></div></div></div>");
 								
 								id = "product"+pID;
 								productEvent = document.getElementById(id);
@@ -269,7 +310,7 @@
 								
 								if(months.indexOf(monthArray[k].trim())!=-1){
 									//console.log(product+" trouve");
-									$("#"+monthArray[k].trim()+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+link+"</div></div></div></div>");
+									$("#"+monthArray[k].trim()+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence "+occurence+"'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+AfResponsabilities+DeResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+linkFull+"</div></div></div></div>");
 								
 									id = "product"+pID;
 									productEvent = document.getElementById(id);
@@ -288,7 +329,7 @@
 
 						if(!monthsExists){
 							for (j = 0; j < months.length; j+=12) {
-								$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+link+"</div></div></div></div>");
+								$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence "+occurence+"'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+AfResponsabilities+DeResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+linkFull+"</div></div></div></div>");
 								
 								id = "product"+pID;
 								productEvent = document.getElementById(id);
@@ -309,7 +350,7 @@
 								
 								if(months.indexOf(monthArray[k].trim())!=-1){
 									//console.log(product+" trouve");
-									$("#"+monthArray[k].trim()+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+link+"</div></div></div></div>");
+									$("#"+monthArray[k].trim()+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence "+occurence+"'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+AfResponsabilities+DeResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+linkFull+"</div></div></div></div>");
 								
 									id = "product"+pID;
 									productEvent = document.getElementById(id);
@@ -328,7 +369,7 @@
 
 						if(!monthsExists){
 							for (j = 0; j < months.length; j+=4) {
-								$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+link+"</div></div></div></div>");
+								$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence "+occurence+"'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+AfResponsabilities+DeResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+linkFull+"</div></div></div></div>");
 								
 								id = "product"+pID;
 								productEvent = document.getElementById(id);
@@ -341,7 +382,7 @@
 						break;
 					case "Monthly":
 						for (j = 0; j < months.length; j++) {
-							$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+link+"</div></div></div></div>");
+							$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence "+occurence+"'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+AfResponsabilities+DeResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+linkFull+"</div></div></div></div>");
 							
 							id = "product"+pID;
 							productEvent = document.getElementById(id);
@@ -353,7 +394,7 @@
 						break;
 					case "Weekly":
 						for (j = 0; j < months.length; j++) {
-							$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+link+"</div></div></div></div>");
+							$("#"+months[j]+" .ProductMonth").append("<div class='product' id='product"+pID+"'><div class='entete'><div class='productOccurence "+occurence+"'>"+occurence+"</div><div class='productTitle'>"+product+"</div></div><div class='productContent'  hidden='hidden' >"+imagePreview+"<div class='contents"+classContent+"'><div class='productTrigger'><span class='ion-arrow-graph-up-right'></span> Trigger : "+trigger+"</div><div class='productResponsibles'>"+pcrResponsabilities+imResponsabilities+piResponsabilities+AfResponsabilities+DeResponsabilities+"</div><div class='productOutput'>Distribution platform : "+output+" "+linkFull+"</div></div></div></div>");
 							
 							id = "product"+pID;
 							productEvent = document.getElementById(id);
@@ -394,24 +435,25 @@
 
 	<div class="container-fluid">
 		<div class='row'>
-			<div id ='anytimeproduct' class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>
-				<div class='rowTitle2 col-xs-12 col-sm-12 col-md-12 col-lg-12'>
-					<span class='ion-flash'></span> ANYTIME PRODUCTS
+			<div class='col1'>
+				<div id ='anytimeproduct'>
+					<div class='rowTitle2'>
+						<span class='ion-flash'></span> ON DEMAND PRODUCTS
+					</div>
+					<div class=''  style='padding-top: 68px;' id='anytime'>
+					</div>
+					<div class='bottom'>
+						<span class='icon-logoOcha logo'></span><br/>
+						<span class='titreDocument'>Information Product and Service Catalogue</span>
+					</div>
 				</div>
-				<div class='anytime col-xs-12 col-sm-12 col-md-12 col-lg-12' style='margin-top:63px;' id='anytime'>
-
-				</div>
-				<div class='bottom'>
-					<span class='icon-logoOcha logo'></span><br/>
-					<span class='titreDocument'>Information Product and Service Catalogue</span>
-				</div>
-				
 			</div>
-			<div id ='scheduledproduct' class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>
+			<div class='col2'>
+			<div id ='scheduledproduct' >
 				<div class='rowTitle col-xs-12 col-sm-12 col-md-12 col-lg-12'>
 					<span class='ion-ios-calendar-outline'></span> SCHEDULED PRODUCTS
 				</div>
-				<div class='month col-xs-12 col-sm-12 col-md-12 col-lg-12' style='margin-top:63px;' id='jan'>
+				<div class='month col-xs-12 col-sm-12 col-md-12 col-lg-12' style='margin-top:42px;' id='jan'>
 					<div class='labelMonth col-xs-3 col-sm-3 col-md-3 col-lg-3'>JAN</div>
 					<div class='ProductMonth col-xs-9 col-sm-9 col-md-9 col-lg-9'>
 						
@@ -483,6 +525,7 @@
 						
 					</div>
 				</div>
+			</div>
 			</div>
 		</div>
 	</div>
